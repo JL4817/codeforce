@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -5,30 +6,42 @@ public class ID_141A {
 
     public static void main(String args[]) {
         Scanner input = new Scanner(System.in);
-        String s1 = input.nextLine();
-        String s2 = input.nextLine();
+        // String s1 = input.nextLine();
+        String s1 = "SANTACLAUS";
+        // String s2 = input.nextLine();
+        String s2 = "DEDMOROZ";
+        String added = s1 + s2;
+        String s3 = input.nextLine();
+        char addChar[] = s3.toCharArray();
+        HashSet<Character> namesHash = new HashSet<Character>(added.length());
+        int count = 0;
 
-        char containsFinal[] = input.nextLine().toCharArray();
+        java.util.Iterator<Character> it = namesHash.iterator();
 
-        HashSet<Character> name = new HashSet<Character>();
+        // HashMap<String, Integer> map = new HashMap<>(100);
 
-        for (char c : containsFinal) {
-            name.add(c);
+        // need to add thing first to hashset before trying to iterate it
+        while (it.hasNext()) {
+            namesHash.add(addChar[count]);
+            count++;
+            // System.out.println(it.next());
         }
 
-        String arr[] = (s1 + s2).split("");
+        char match[] = input.nextLine().toCharArray(); // can this match
 
-        for (int i = 0; i < arr.length; i++) {
-            if (name.contains(arr[i])) {
-                name.remove(arr[i]);
+        for (int i = 0; i < match.length; i++) {
+            if (namesHash.contains(match[i])) {
+                namesHash.remove(match[i]);
             }
         }
 
-        if (name.isEmpty()) {
-            System.out.println("NO");
-        } else {
+        if (namesHash.isEmpty() == true) {
             System.out.println("YES");
+        } else {
+            System.out.println("NO");
         }
+
+        input.close();
 
     }
 }

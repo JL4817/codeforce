@@ -8,7 +8,8 @@ public class GUI extends JFrame {
     // Constructor to set up the GUI
     public GUI() {
 
-        String arrRequire[] = { "Passwort muss mindestens 8 Charaktere lang sein!", ".", "b", "c" };
+        String arrRequire[] = { "1st Passwort muss mindestens 8 Charaktere lang sein!",
+                "Geben Sie sowohl Groß- als auch Kleinbuchstaben ein!", "b", "c" };
 
         // Set the title of the window
         setTitle("Passwort Herstellung");
@@ -46,20 +47,18 @@ public class GUI extends JFrame {
                 String reply1 = require1.getText().trim();
 
                 JTextField requField2 = new JTextField(20);
+                JLabel requLabel2 = new JLabel("2. Geben Sie sowohl Groß- als auch Kleinbuchstaben ein!");
 
                 if (!reply1.isEmpty() && reply1.length() >= 8) {
-                    // Create a new panel based on user input
-                    JPanel panel2 = createNewPanel(reply1);
-
-                    // Add the new panel to the mainPanel
-                    panel.add(panel2);
 
                     // Revalidate and repaint the mainPanel to reflect the changes
                     panel.revalidate();
                     panel.repaint();
 
                     // Insert the new text field at index 2 (after the first text field)
-                    panel.add(requField2, 2); // Index 2 because 0 is label, 1 is first text field
+                    panel.add(requLabel2, 2);
+                    panel.add(requField2, 3); // Index 2 because 0 is label, 1 is first text field
+
                 } else {
 
                     JOptionPane.showMessageDialog(panel, arrRequire[0], "Error",
@@ -74,25 +73,9 @@ public class GUI extends JFrame {
         add(panel);
     }
 
-    // Method to create a new panel based on user input
-    private static JPanel createNewPanel(String inputText) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
-
-        JLabel label = new JLabel("New Panel for: " + inputText);
-        panel.add(label);
-
-        // Add additional components as needed for the new panel
-
-        return panel;
-    }
-
 }
 
 /*
- * Length: Aim for a minimum of 8 characters. //fertig
- * 
- * Mix of characters: Include both uppercase and lowercase letters.
  * 
  * Numbers: Include at least one numerical digit (0-9).
  * 
